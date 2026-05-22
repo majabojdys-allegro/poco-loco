@@ -102,7 +102,7 @@ export default function App() {
     <div className="app">
       <header className="app-header">
         <h1 className="app-title">
-          <img src="/assets/images/skull1.png" className="title-skull" alt="skull" />
+          <img src="/assets/images/skull1.png" className="title-skull title-skull-left" alt="skull" />
           <span className="title-space"> </span>
           <span className="l0">P</span>
           <span className="l1">O</span>
