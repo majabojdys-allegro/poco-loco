@@ -5,9 +5,9 @@
 
 .wheel-pointer {
   position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  right: -24px;
+  transform: translateY(-50%);
   font-size: 2rem;
   color: #ffd700;
   text-shadow: 0 0 12px rgba(255, 215, 0, 0.8);

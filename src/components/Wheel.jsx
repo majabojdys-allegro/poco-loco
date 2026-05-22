@@ -102,7 +102,7 @@ export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, 
     const margin = arc * 0.15;
     const randomOffset = margin + Math.random() * (arc - 2 * margin);
     const extraRotations = (6 + Math.floor(Math.random() * 4)) * Math.PI * 2;
-    const targetAngle = -Math.PI / 2 - (winnerIndex * arc + randomOffset);
+    const targetAngle = -(winnerIndex * arc + randomOffset);
     let delta = targetAngle - angleRef.current + extraRotations;
     // Ensure we always spin forward
     while (delta < extraRotations - Math.PI * 2) delta += Math.PI * 2;
@@ -179,7 +179,7 @@ export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, 
 
   return (
     <div className="wheel-container">
-      <div className="wheel-pointer">▼</div>
+      <div className="wheel-pointer">◀</div>
       <canvas
         ref={canvasRef}
         width={WHEEL_SIZE}
