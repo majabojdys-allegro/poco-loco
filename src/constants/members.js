@@ -9,14 +9,14 @@ export const INITIAL_MEMBERS = [
 ];
 
 export const SEGMENT_COLORS = [
-  '#C0392B',
-  '#1A7A6E',
-  '#1A6A8A',
-  '#2E7D52',
-  '#B8860B',
-  '#7D3C8C',
-  '#1A6B5A',
-  '#B7950B',
-  '#6C3483',
-  '#C05A1F',
+  '#E8175D',
+  '#F5A623',
+  '#2ECC71',
+  '#9B59B6',
+  '#E74C3C',
+  '#1ABC9C',
+  '#F39C12',
+  '#D91E8C',
+  '#27AE60',
+  '#E67E22',
 ];

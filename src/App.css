@@ -34,14 +34,36 @@ body {
 }
 
 .app-title {
-  font-size: 3.4rem;
-  font-weight: 900;
-  letter-spacing: 8px;
-  background: linear-gradient(90deg, #ffd700, #ff6b6b, #4ecdc4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-family: 'Lilita One', cursive;
+  font-size: 4rem;
+  font-weight: 400;
+  letter-spacing: 4px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
+
+.title-skull {
+  height: 120px;
+  width: auto;
+  margin: 0 0.5cm;
+}
+
+.title-space {
+  display: inline-block;
+  width: 0.4em;
+}
+
+.l0 { color: #E8391A; text-shadow: 3px 3px 0 rgba(0,0,0,0.25); } /* P - czerwony */
+.l1 { color: #F5A623; text-shadow: 3px 3px 0 rgba(0,0,0,0.25); } /* O - pomarańcz */
+.l2 { color: #E8175D; text-shadow: 3px 3px 0 rgba(0,0,0,0.25); } /* C - różowy */
+.l3 { color: #1E9ED4; text-shadow: 3px 3px 0 rgba(0,0,0,0.25); } /* O - niebieski */
+.l4 { color: #E8391A; text-shadow: 3px 3px 0 rgba(0,0,0,0.25); } /* L - czerwony */
+.l5 { color: #F5A623; text-shadow: 3px 3px 0 rgba(0,0,0,0.25); } /* O - pomarańcz */
+.l6 { color: #E8175D; text-shadow: 3px 3px 0 rgba(0,0,0,0.25); } /* C - różowy */
+.l7 { color: #1E9ED4; text-shadow: 3px 3px 0 rgba(0,0,0,0.25); } /* O - niebieski */
 
 .app-subtitle {
   font-size: 0.8rem;

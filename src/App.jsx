@@ -4,6 +4,7 @@ import Wheel from './components/Wheel';
 import MemberList from './components/MemberList';
 import WinnerModal from './components/WinnerModal';
 import AudioPlayer from './components/AudioPlayer';
+import SugarSkull from './components/SugarSkull';
 import { useTimer } from './hooks/useTimer';
 import './App.css';
 
@@ -100,7 +101,21 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1 className="app-title">🎡 POCO LOCO 🎡</h1>
+        <h1 className="app-title">
+          <img src="/assets/images/skull1.png" className="title-skull" alt="skull" />
+          {' '}
+          <span className="l0">P</span>
+          <span className="l1">O</span>
+          <span className="l2">C</span>
+          <span className="l3">O</span>
+          <span className="title-space"> </span>
+          <span className="l4">L</span>
+          <span className="l5">O</span>
+          <span className="l6">C</span>
+          <span className="l7">O</span>
+          {' '}
+          <img src="/assets/images/skull1.png" className="title-skull" alt="skull" />
+        </h1>
         <div className="audio-corner">
           <AudioPlayer />
         </div>
