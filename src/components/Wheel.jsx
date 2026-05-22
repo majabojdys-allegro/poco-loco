@@ -65,12 +65,13 @@ function drawWheel(canvas, members, currentAngle) {
   ctx.fill();
 }
 
-export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, currentSpeaker }) {
+export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, currentSpeaker, boostRef }) {
   const canvasRef = useRef(null);
   const angleRef = useRef(-Math.PI / 2); // start at top
   const rafRef = useRef(null);
   const isSpinningRef = useRef(false);
   const membersRef = useRef(members);
+  const spinStateRef = useRef({ startAngle: 0, totalSpin: 0, duration: 0, startTime: 0, winnerIndex: -1 });
 
   // Keep membersRef in sync
   useEffect(() => {
@@ -111,29 +112,56 @@ export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, 
     const duration = 4000 + Math.random() * 1500;
     const startTime = performance.now();
 
+    spinStateRef.current = { startAngle, totalSpin, duration, startTime, winnerIndex };
+
     isSpinningRef.current = true;
     setIsSpinning(true);
 
     function frame(now) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
+      const state = spinStateRef.current;
+      const elapsed = now - state.startTime;
+      const progress = Math.min(elapsed / state.duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      angleRef.current = startAngle + totalSpin * eased;
+      angleRef.current = state.startAngle + state.totalSpin * eased;
       drawWheel(canvasRef.current, membersRef.current, angleRef.current);
 
       if (progress < 1) {
         rafRef.current = requestAnimationFrame(frame);
       } else {
-        angleRef.current = startAngle + totalSpin;
+        angleRef.current = state.startAngle + state.totalSpin;
         drawWheel(canvasRef.current, membersRef.current, angleRef.current);
         isSpinningRef.current = false;
         setIsSpinning(false);
-        onSpinEnd(currentMembers[winnerIndex]);
+        onSpinEnd(currentMembers[state.winnerIndex]);
       }
     }
 
     rafRef.current = requestAnimationFrame(frame);
   }, [onSpinEnd, setIsSpinning]);
+
+  const doBoost = useCallback(() => {
+    if (!isSpinningRef.current) return;
+    const state = spinStateRef.current;
+    const now = performance.now();
+    const elapsed = now - state.startTime;
+    const progress = Math.min(elapsed / state.duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    // Restart animation from current position with extra spin
+    const currentAngle = state.startAngle + state.totalSpin * eased;
+    const extraSpin = (2 + Math.random() * 2) * Math.PI * 2;
+    spinStateRef.current = {
+      ...state,
+      startAngle: currentAngle,
+      totalSpin: state.totalSpin * (1 - eased) + extraSpin,
+      duration: 3000 + Math.random() * 1000,
+      startTime: now,
+    };
+  }, []);
+
+  // Expose boost function via ref
+  useEffect(() => {
+    if (boostRef) boostRef.current = doBoost;
+  }, [boostRef, doBoost]);
 
   // Trigger spin when spinTrigger increments
   useEffect(() => {

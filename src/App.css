@@ -117,6 +117,13 @@ body {
   gap: 12px;
 }
 
+.controls-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 16px;
+}
+
 .spin-btn {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: none;
@@ -145,6 +152,16 @@ body {
 .spin-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+.boost-btn {
+  background: linear-gradient(135deg, #ff6348, #e84393);
+  margin-top: 0.5rem;
+}
+
+.boost-btn:hover {
+  background: linear-gradient(135deg, #ff4500, #c0392b);
+  transform: scale(1.05);
 }
 
 .hint {

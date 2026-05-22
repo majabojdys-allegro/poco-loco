@@ -15,6 +15,7 @@ export default function App() {
   const [phase, setPhase] = useState('idle'); // 'idle' | 'spinning' | 'speaking' | 'finished'
   const [isSpinning, setIsSpinning] = useState(false);
   const [spinTrigger, setSpinTrigger] = useState(0);
+  const wheelBoostRef = useRef(null);
   const [currentSpeaker, setCurrentSpeaker] = useState(null);
   const [timerSeconds, setTimerSeconds] = useState(0);
   const [speakingTimes, setSpeakingTimes] = useState([]);
@@ -139,6 +140,7 @@ export default function App() {
             spinTrigger={spinTrigger}
             setIsSpinning={setIsSpinning}
             currentSpeaker={currentSpeaker}
+            boostRef={wheelBoostRef}
           />
 
           <div className="controls">
@@ -146,13 +148,22 @@ export default function App() {
               <p className="hint">Wszyscy są nieobecni lub skończyli wypowiedź.</p>
             )}
             {phase !== 'finished' && (
-              <button
-                className="spin-btn"
-                onClick={handleSpin}
-                disabled={isButtonDisabled}
-              >
-                {getButtonLabel()}
-              </button>
+              <div className="controls-buttons">
+                <button
+                  className="spin-btn"
+                  onClick={handleSpin}
+                  disabled={isButtonDisabled}
+                >
+                  {getButtonLabel()}
+                </button>
+                <button
+                  className="spin-btn boost-btn"
+                  onClick={() => wheelBoostRef.current && wheelBoostRef.current()}
+                  disabled={!isSpinning}
+                >
+                  Booost!
+                </button>
+              </div>
             )}
           </div>
         </div>
