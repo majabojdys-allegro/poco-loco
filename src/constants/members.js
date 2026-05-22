@@ -25,7 +25,7 @@ export const SEGMENT_COLORS = [
   '#9B59B6',
   '#E74C3C',
   '#1ABC9C',
-  '#F39C12',
+  '#3498DB',
   '#D91E8C',
   '#27AE60',
   '#E67E22',
