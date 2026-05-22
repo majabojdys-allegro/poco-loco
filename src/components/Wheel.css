@@ -1,0 +1,26 @@
+.wheel-container {
+  position: relative;
+  display: inline-block;
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: #ffd700;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+  z-index: 2;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.wheel-canvas {
+  display: block;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 4px rgba(255, 255, 255, 0.15),
+    0 0 40px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(102, 126, 234, 0.2);
+}
