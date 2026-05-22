@@ -103,7 +103,7 @@ export default function App() {
       <header className="app-header">
         <h1 className="app-title">
           <img src="/assets/images/skull1.png" className="title-skull" alt="skull" />
-          {' '}
+          <span className="title-space"> </span>
           <span className="l0">P</span>
           <span className="l1">O</span>
           <span className="l2">C</span>
@@ -113,8 +113,8 @@ export default function App() {
           <span className="l5">O</span>
           <span className="l6">C</span>
           <span className="l7">O</span>
-          {' '}
-          <img src="/assets/images/skull1.png" className="title-skull" alt="skull" />
+          <span className="title-space"> </span>
+          <img src="/assets/images/skull1.png" className="title-skull title-skull-right" alt="skull" />
         </h1>
         <div className="audio-corner">
           <AudioPlayer />

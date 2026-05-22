@@ -51,6 +51,10 @@ body {
   margin: 0 0.5cm;
 }
 
+.title-skull-right {
+  margin-left: 0;
+}
+
 .title-space {
   display: inline-block;
   width: 0.4em;
