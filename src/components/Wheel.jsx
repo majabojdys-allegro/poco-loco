@@ -158,6 +158,15 @@ export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, 
         height={WHEEL_SIZE}
         className="wheel-canvas"
       />
+      {!currentSpeaker && (
+        <div className="wheel-character">
+          <img
+            src="/assets/images/main.png"
+            alt="skull"
+            className="wheel-character-img"
+          />
+        </div>
+      )}
       {currentSpeaker && CHARACTER_IMAGES[currentSpeaker.id] && (
         <div className={`wheel-character wheel-character--id-${currentSpeaker.id}`}>
           <img
