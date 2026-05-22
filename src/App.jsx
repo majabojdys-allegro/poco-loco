@@ -138,6 +138,7 @@ export default function App() {
             onSpinEnd={handleSpinEnd}
             spinTrigger={spinTrigger}
             setIsSpinning={setIsSpinning}
+            currentSpeaker={currentSpeaker}
           />
 
           <div className="controls">

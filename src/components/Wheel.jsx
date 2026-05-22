@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import { SEGMENT_COLORS } from '../constants/members';
+import { SEGMENT_COLORS, CHARACTER_IMAGES } from '../constants/members';
 import './Wheel.css';
 
 const WHEEL_SIZE = 440;
@@ -58,22 +58,14 @@ function drawWheel(canvas, members, currentAngle) {
     ctx.restore();
   });
 
-  // Center circle
+  // Small center dot
   ctx.beginPath();
-  ctx.arc(CENTER, CENTER, 24, 0, Math.PI * 2);
-  ctx.fillStyle = '#1a1a2e';
-  ctx.fill();
-  ctx.strokeStyle = 'rgba(255,255,255,0.4)';
-  ctx.lineWidth = 3;
-  ctx.stroke();
-
-  ctx.beginPath();
-  ctx.arc(CENTER, CENTER, 8, 0, Math.PI * 2);
-  ctx.fillStyle = '#ffd700';
+  ctx.arc(CENTER, CENTER, 4, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
   ctx.fill();
 }
 
-export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning }) {
+export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, currentSpeaker }) {
   const canvasRef = useRef(null);
   const angleRef = useRef(-Math.PI / 2); // start at top
   const rafRef = useRef(null);
@@ -166,6 +158,15 @@ export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning }
         height={WHEEL_SIZE}
         className="wheel-canvas"
       />
+      {currentSpeaker && CHARACTER_IMAGES[currentSpeaker.id] && (
+        <div className={`wheel-character wheel-character--id-${currentSpeaker.id}`}>
+          <img
+            src={CHARACTER_IMAGES[currentSpeaker.id]}
+            alt={currentSpeaker.name}
+            className="wheel-character-img"
+          />
+        </div>
+      )}
     </div>
   );
 }
