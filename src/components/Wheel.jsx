@@ -97,11 +97,11 @@ export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, 
 
     const winnerIndex = Math.floor(Math.random() * n);
 
-    // We want winnerIndex segment to be at the top (pointer at -PI/2).
-    // The center of segment i is at: angleRef.current + i*arc + arc/2
-    // We want that center to equal -PI/2 after spinning.
+    // Random stop position within the winning segment (15% margin from edges)
+    const margin = arc * 0.15;
+    const randomOffset = margin + Math.random() * (arc - 2 * margin);
     const extraRotations = (6 + Math.floor(Math.random() * 4)) * Math.PI * 2;
-    const targetAngle = -Math.PI / 2 - (winnerIndex * arc + arc / 2);
+    const targetAngle = -Math.PI / 2 - (winnerIndex * arc + randomOffset);
     let delta = targetAngle - angleRef.current + extraRotations;
     // Ensure we always spin forward
     while (delta < extraRotations - Math.PI * 2) delta += Math.PI * 2;
