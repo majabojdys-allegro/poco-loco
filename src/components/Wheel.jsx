@@ -205,7 +205,7 @@ export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, 
       {!currentSpeaker && (
         <div className="wheel-character">
           <img
-            src="/assets/images/main.png"
+            src={`${import.meta.env.BASE_URL}assets/images/main.png`}
             alt="skull"
             className="wheel-character-img"
           />

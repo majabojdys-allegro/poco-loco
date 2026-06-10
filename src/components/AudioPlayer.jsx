@@ -46,7 +46,7 @@ export default function AudioPlayer() {
 
   return (
     <div className="audio-player">
-      <audio ref={audioRef} src="/assets/sounds/background.mp3" loop preload="auto" />
+      <audio ref={audioRef} src={`${import.meta.env.BASE_URL}assets/sounds/background.mp3`} loop preload="auto" />
       <button className="mute-btn" onClick={togglePlay} title={playing ? 'Pauza' : 'Odtwórz muzykę'}>
         {!playing ? '▶️' : volume === 0 ? '🔇' : volume < 0.4 ? '🔉' : '🔊'}
       </button>

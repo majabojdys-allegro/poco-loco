@@ -8,14 +8,16 @@ export const INITIAL_MEMBERS = [
   { id: 5, name: 'Paweł' },
 ];
 
+const BASE = import.meta.env.BASE_URL;
+
 export const CHARACTER_IMAGES = {
-  2: '/assets/images/characters/imelda.png',   // Gosia
-  4: '/assets/images/characters/miguel.png',   // Jacek
-  6: '/assets/images/characters/hektor.png',   // Łukasz W.
-  5: '/assets/images/characters/ernesto.png',  // Paweł
-  3: '/assets/images/characters/marcin.png',   // Marcin
-  1: '/assets/images/characters/maja.png',     // Maja
-  7: '/assets/images/characters/lukaszt.png', // Łukasz T.
+  2: `${BASE}assets/images/characters/imelda.png`,   // Gosia
+  4: `${BASE}assets/images/characters/miguel.png`,   // Jacek
+  6: `${BASE}assets/images/characters/hektor.png`,   // Łukasz W.
+  5: `${BASE}assets/images/characters/ernesto.png`,  // Paweł
+  3: `${BASE}assets/images/characters/marcin.png`,   // Marcin
+  1: `${BASE}assets/images/characters/maja.png`,     // Maja
+  7: `${BASE}assets/images/characters/lukaszt.png`,  // Łukasz T.
 };
 
 export const SEGMENT_COLORS = [

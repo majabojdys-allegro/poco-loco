@@ -104,7 +104,7 @@ export default function App() {
     <div className="app">
       <header className="app-header">
         <h1 className="app-title">
-          <img src="/assets/images/skull1.png" className="title-skull title-skull-left" alt="skull" />
+          <img src={`${import.meta.env.BASE_URL}assets/images/skull1.png`} className="title-skull title-skull-left" alt="skull" />
           <span className="title-space"> </span>
           <span className="l0">P</span>
           <span className="l1">O</span>
@@ -116,7 +116,7 @@ export default function App() {
           <span className="l6">C</span>
           <span className="l7">O</span>
           <span className="title-space"> </span>
-          <img src="/assets/images/skull1.png" className="title-skull title-skull-right" alt="skull" />
+          <img src={`${import.meta.env.BASE_URL}assets/images/skull1.png`} className="title-skull title-skull-right" alt="skull" />
         </h1>
         <div className="audio-corner">
           <AudioPlayer />
