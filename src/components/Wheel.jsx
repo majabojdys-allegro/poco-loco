@@ -65,7 +65,7 @@ function drawWheel(canvas, members, currentAngle) {
   ctx.fill();
 }
 
-export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, currentSpeaker, boostRef }) {
+export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, currentSpeaker, boostRef, stopRef }) {
   const canvasRef = useRef(null);
   const angleRef = useRef(-Math.PI / 2); // start at top
   const rafRef = useRef(null);
@@ -93,26 +93,16 @@ export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, 
     const currentMembers = membersRef.current;
     if (isSpinningRef.current || currentMembers.length === 0) return;
 
-    const n = currentMembers.length;
-    const arc = (Math.PI * 2) / n;
-
-    const winnerIndex = Math.floor(Math.random() * n);
-
-    // Random stop position within the winning segment (15% margin from edges)
-    const margin = arc * 0.15;
-    const randomOffset = margin + Math.random() * (arc - 2 * margin);
-    const extraRotations = (6 + Math.floor(Math.random() * 4)) * Math.PI * 2;
-    const targetAngle = -(winnerIndex * arc + randomOffset);
-    let delta = targetAngle - angleRef.current + extraRotations;
-    // Ensure we always spin forward
-    while (delta < extraRotations - Math.PI * 2) delta += Math.PI * 2;
+    // Spin a random amount — winner is determined by where the wheel stops
+    const extraRotations = (6 + Math.random() * 4) * Math.PI * 2;
+    const randomExtra = Math.random() * Math.PI * 2;
+    const totalSpin = extraRotations + randomExtra;
 
     const startAngle = angleRef.current;
-    const totalSpin = delta;
     const duration = 4000 + Math.random() * 1500;
     const startTime = performance.now();
 
-    spinStateRef.current = { startAngle, totalSpin, duration, startTime, winnerIndex };
+    spinStateRef.current = { startAngle, totalSpin, duration, startTime };
 
     isSpinningRef.current = true;
     setIsSpinning(true);
@@ -132,7 +122,14 @@ export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, 
         drawWheel(canvasRef.current, membersRef.current, angleRef.current);
         isSpinningRef.current = false;
         setIsSpinning(false);
-        onSpinEnd(currentMembers[state.winnerIndex]);
+
+        // Determine winner from final wheel angle (pointer is on the right = angle 0)
+        const n = membersRef.current.length;
+        const arc = (Math.PI * 2) / n;
+        const finalAngle = angleRef.current;
+        const normalized = ((-finalAngle) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
+        const winnerIndex = Math.floor(normalized / arc) % n;
+        onSpinEnd(membersRef.current[winnerIndex]);
       }
     }
 
@@ -158,10 +155,29 @@ export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, 
     };
   }, []);
 
+  const doStop = useCallback(() => {
+    if (!isSpinningRef.current) return;
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    isSpinningRef.current = false;
+    setIsSpinning(false);
+    drawWheel(canvasRef.current, membersRef.current, angleRef.current);
+
+    const n = membersRef.current.length;
+    const arc = (Math.PI * 2) / n;
+    const normalized = ((-angleRef.current) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
+    const winnerIndex = Math.floor(normalized / arc) % n;
+    onSpinEnd(membersRef.current[winnerIndex]);
+  }, [onSpinEnd, setIsSpinning]);
+
   // Expose boost function via ref
   useEffect(() => {
     if (boostRef) boostRef.current = doBoost;
   }, [boostRef, doBoost]);
+
+  // Expose stop function via ref
+  useEffect(() => {
+    if (stopRef) stopRef.current = doStop;
+  }, [stopRef, doStop]);
 
   // Trigger spin when spinTrigger increments
   useEffect(() => {

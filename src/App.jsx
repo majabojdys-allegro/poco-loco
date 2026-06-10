@@ -16,6 +16,7 @@ export default function App() {
   const [isSpinning, setIsSpinning] = useState(false);
   const [spinTrigger, setSpinTrigger] = useState(0);
   const wheelBoostRef = useRef(null);
+  const wheelStopRef = useRef(null);
   const [currentSpeaker, setCurrentSpeaker] = useState(null);
   const [timerSeconds, setTimerSeconds] = useState(0);
   const [speakingTimes, setSpeakingTimes] = useState([]);
@@ -141,6 +142,7 @@ export default function App() {
             setIsSpinning={setIsSpinning}
             currentSpeaker={currentSpeaker}
             boostRef={wheelBoostRef}
+            stopRef={wheelStopRef}
           />
 
           <div className="controls">
@@ -162,6 +164,13 @@ export default function App() {
                   disabled={!isSpinning}
                 >
                   Booost!
+                </button>
+                <button
+                  className="spin-btn stop-btn"
+                  onClick={() => wheelStopRef.current && wheelStopRef.current()}
+                  disabled={!isSpinning}
+                >
+                  Stop!
                 </button>
               </div>
             )}
