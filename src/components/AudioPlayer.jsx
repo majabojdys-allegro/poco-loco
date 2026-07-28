@@ -1,11 +1,24 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './AudioPlayer.css';
 
-export default function AudioPlayer() {
+export default function AudioPlayer({ audioSrc }) {
   const audioRef = useRef(null);
   const [volume, setVolume] = useState(0.3);
   const [playing, setPlaying] = useState(false);
   const [started, setStarted] = useState(false);
+
+  // When audio source changes, reload and continue playing if was playing
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio || !started) return;
+    const wasPlaying = playing;
+    audio.pause();
+    audio.load();
+    if (wasPlaying) {
+      audio.play().catch(() => {});
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [audioSrc]);
 
   // Start music on first user interaction anywhere on the page
   useEffect(() => {
@@ -46,7 +59,7 @@ export default function AudioPlayer() {
 
   return (
     <div className="audio-player">
-      <audio ref={audioRef} src={`${import.meta.env.BASE_URL}assets/sounds/background.mp3`} loop preload="auto" />
+      <audio ref={audioRef} src={audioSrc} loop preload="auto" />
       <button className="mute-btn" onClick={togglePlay} title={playing ? 'Pauza' : 'Odtwórz muzykę'}>
         {!playing ? '▶️' : volume === 0 ? '🔇' : volume < 0.4 ? '🔉' : '🔊'}
       </button>

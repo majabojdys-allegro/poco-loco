@@ -1,0 +1,37 @@
+.theme-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  padding: 6px 14px 6px 10px;
+}
+
+.theme-selector-label {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.theme-select {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 4px;
+  letter-spacing: 0.5px;
+}
+
+.theme-select option {
+  background: #1a1a2e;
+  color: #fff;
+}
+
+.theme-select:hover {
+  color: #ffd700;
+}

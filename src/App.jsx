@@ -1,10 +1,12 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { INITIAL_MEMBERS } from './constants/members';
+import { THEMES, DEFAULT_THEME_ID } from './constants/themes';
 import Wheel from './components/Wheel';
 import MemberList from './components/MemberList';
 import WinnerModal from './components/WinnerModal';
 import AudioPlayer from './components/AudioPlayer';
 import SugarSkull from './components/SugarSkull';
+import ThemeSelector from './components/ThemeSelector';
 import { useTimer } from './hooks/useTimer';
 import './App.css';
 
@@ -21,6 +23,9 @@ export default function App() {
   const [timerSeconds, setTimerSeconds] = useState(0);
   const [speakingTimes, setSpeakingTimes] = useState([]);
   const [showWinner, setShowWinner] = useState(false);
+  const [themeId, setThemeId] = useState(DEFAULT_THEME_ID);
+
+  const theme = THEMES.find((t) => t.id === themeId) ?? THEMES[0];
 
   const { reset: resetTimer, getElapsed } = useTimer(
     phase === 'speaking',
@@ -101,10 +106,19 @@ export default function App() {
   const isButtonDisabled = isSpinning || activeMembers.length === 0;
 
   return (
-    <div className="app">
+    <div
+      className={`app theme-${theme.id}`}
+      style={{
+        background: `${theme.backgroundOverlay}, url('${theme.backgroundImage}') center center / cover no-repeat`,
+      }}
+    >
       <header className="app-header">
-        <h1 className="app-title">
-          <img src={`${import.meta.env.BASE_URL}assets/images/skull1.png`} className="title-skull title-skull-left" alt="skull" />
+        <h1 className={`app-title ${theme.titleClassName}`}>
+          {theme.titleSideImage ? (
+            <img src={theme.titleSideImage} className="title-skull title-skull-left" alt="decoration" />
+          ) : (
+            <img src={`${import.meta.env.BASE_URL}assets/images/skull1.png`} className="title-skull title-skull-left" alt="skull" />
+          )}
           <span className="title-space"> </span>
           <span className="l0">P</span>
           <span className="l1">O</span>
@@ -116,10 +130,15 @@ export default function App() {
           <span className="l6">C</span>
           <span className="l7">O</span>
           <span className="title-space"> </span>
-          <img src={`${import.meta.env.BASE_URL}assets/images/skull1.png`} className="title-skull title-skull-right" alt="skull" />
+          {theme.titleSideImage ? (
+            <img src={theme.titleSideImage} className="title-skull title-skull-right" alt="decoration" />
+          ) : (
+            <img src={`${import.meta.env.BASE_URL}assets/images/skull1.png`} className="title-skull title-skull-right" alt="skull" />
+          )}
         </h1>
         <div className="audio-corner">
-          <AudioPlayer />
+          <ThemeSelector themeId={themeId} onChange={setThemeId} />
+          <AudioPlayer audioSrc={theme.audioSrc} />
         </div>
       </header>
 
@@ -143,6 +162,9 @@ export default function App() {
             currentSpeaker={currentSpeaker}
             boostRef={wheelBoostRef}
             stopRef={wheelStopRef}
+            segmentColors={theme.segmentColors}
+            centerImage={theme.centerImage}
+            characterImages={theme.characterImages}
           />
 
           <div className="controls">

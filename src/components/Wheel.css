@@ -36,8 +36,32 @@
   pointer-events: none;
 }
 
-/* Łukasz W. (id=6) - Hektor */
+/* Łukasz W. (id=6) - Dumbledore */
 .wheel-character--id-6 {
+  width: 200px;
+  height: 200px;
+}
+
+/* Jacek (id=4) - Harry - obraz wąski, większy box żeby twarz pasowała rozmiarem do Rona */
+.wheel-character--id-4 {
+  width: 225px;
+  height: 225px;
+}
+
+/* Gosia (id=2) - Hermiona */
+.wheel-character--id-2 {
+  width: 225px;
+  height: 225px;
+}
+
+/* Paweł (id=5) - Hagrid */
+.wheel-character--id-5 {
+  width: 225px;
+  height: 225px;
+}
+
+/* Maja (id=1) - Luna */
+.wheel-character--id-1 {
   width: 210px;
   height: 210px;
 }

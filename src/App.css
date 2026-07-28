@@ -10,13 +10,11 @@ body {
 
 .app {
   height: 100vh;
-  background:
-    linear-gradient(135deg, rgba(15, 12, 41, 0.55) 0%, rgba(48, 43, 99, 0.55) 50%, rgba(36, 36, 62, 0.55) 100%),
-    url('/assets/images/coco.jpg') center center / cover no-repeat;
   color: #fff;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transition: background 0.6s ease;
 }
 
 .app-header {
@@ -31,6 +29,9 @@ body {
   right: 24px;
   top: 50%;
   transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .app-title {
@@ -179,4 +180,62 @@ body {
   color: rgba(255, 255, 255, 0.35);
   font-size: 0.9rem;
   text-align: center;
+}
+
+/* ===================== MOTYW: HOGWART ===================== */
+
+.title--hogwart {
+  font-family: 'Cinzel Decorative', serif !important;
+  font-size: 3.2rem !important;
+  letter-spacing: 6px !important;
+}
+
+.theme-hogwart .l0 { color: #D3A625; text-shadow: 0 0 12px rgba(211,166,37,0.8), 3px 3px 0 rgba(0,0,0,0.5); }
+.theme-hogwart .l1 { color: #C0392B; text-shadow: 0 0 12px rgba(192,57,43,0.8), 3px 3px 0 rgba(0,0,0,0.5); }
+.theme-hogwart .l2 { color: #D3A625; text-shadow: 0 0 12px rgba(211,166,37,0.8), 3px 3px 0 rgba(0,0,0,0.5); }
+.theme-hogwart .l3 { color: #C0392B; text-shadow: 0 0 12px rgba(192,57,43,0.8), 3px 3px 0 rgba(0,0,0,0.5); }
+.theme-hogwart .l4 { color: #D3A625; text-shadow: 0 0 12px rgba(211,166,37,0.8), 3px 3px 0 rgba(0,0,0,0.5); }
+.theme-hogwart .l5 { color: #C0392B; text-shadow: 0 0 12px rgba(192,57,43,0.8), 3px 3px 0 rgba(0,0,0,0.5); }
+.theme-hogwart .l6 { color: #D3A625; text-shadow: 0 0 12px rgba(211,166,37,0.8), 3px 3px 0 rgba(0,0,0,0.5); }
+.theme-hogwart .l7 { color: #C0392B; text-shadow: 0 0 12px rgba(192,57,43,0.8), 3px 3px 0 rgba(0,0,0,0.5); }
+
+.theme-hogwart .title-skull {
+  filter: sepia(0.4) hue-rotate(340deg) brightness(0.85);
+}
+
+.theme-hogwart .wheel-canvas {
+  box-shadow:
+    0 0 0 4px rgba(211, 166, 37, 0.4),
+    0 0 40px rgba(0, 0, 0, 0.7),
+    0 0 80px rgba(116, 0, 1, 0.35);
+}
+
+.theme-hogwart .spin-btn {
+  background: linear-gradient(135deg, #740001 0%, #ae0001 100%);
+  box-shadow: 0 4px 24px rgba(116, 0, 1, 0.55);
+  border: 1px solid rgba(211, 166, 37, 0.4);
+}
+
+.theme-hogwart .spin-btn:hover:not(:disabled) {
+  box-shadow: 0 8px 32px rgba(116, 0, 1, 0.75);
+}
+
+.theme-hogwart .boost-btn {
+  background: linear-gradient(135deg, #1a472a 0%, #2e7d32 100%);
+  box-shadow: 0 4px 24px rgba(26, 71, 42, 0.55);
+}
+
+.theme-hogwart .boost-btn:hover {
+  background: linear-gradient(135deg, #0f2d1a, #1a472a);
+}
+
+.theme-hogwart .stop-btn {
+  background: linear-gradient(135deg, #D3A625 0%, #ecb939 100%);
+  box-shadow: 0 4px 24px rgba(211, 166, 37, 0.55);
+  color: #1a0a00;
+}
+
+.theme-hogwart .stop-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #b8891a 0%, #D3A625 100%);
+  box-shadow: 0 8px 32px rgba(211, 166, 37, 0.75);
 }

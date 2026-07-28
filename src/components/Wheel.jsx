@@ -1,12 +1,30 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import { SEGMENT_COLORS, CHARACTER_IMAGES } from '../constants/members';
+import { CHARACTER_IMAGES } from '../constants/members';
 import './Wheel.css';
 
 const WHEEL_SIZE = 440;
 const CENTER = WHEEL_SIZE / 2;
 const RADIUS = CENTER - 16;
 
-function drawWheel(canvas, members, currentAngle) {
+function assignSegmentColors(n, colors) {
+  if (n === 0) return [];
+  const k = colors.length;
+  const result = [];
+  for (let i = 0; i < n; i++) {
+    for (let c = 0; c < k; c++) {
+      const candidate = colors[(i + c) % k];
+      const prevOk = candidate !== result[i - 1];
+      const wrapOk = i < n - 1 || candidate !== result[0];
+      if (prevOk && wrapOk) {
+        result.push(candidate);
+        break;
+      }
+    }
+  }
+  return result;
+}
+
+function drawWheel(canvas, members, currentAngle, segmentColors) {
   const ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, WHEEL_SIZE, WHEEL_SIZE);
 
@@ -25,11 +43,12 @@ function drawWheel(canvas, members, currentAngle) {
   }
 
   const arc = (Math.PI * 2) / n;
+  const assignedColors = assignSegmentColors(n, segmentColors);
 
   members.forEach((member, i) => {
     const startAngle = currentAngle + i * arc;
     const endAngle = startAngle + arc;
-    const color = SEGMENT_COLORS[i % SEGMENT_COLORS.length];
+    const color = assignedColors[i];
 
     ctx.beginPath();
     ctx.moveTo(CENTER, CENTER);
@@ -65,12 +84,13 @@ function drawWheel(canvas, members, currentAngle) {
   ctx.fill();
 }
 
-export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, currentSpeaker, boostRef, stopRef }) {
+export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, currentSpeaker, boostRef, stopRef, segmentColors, centerImage, characterImages }) {
   const canvasRef = useRef(null);
   const angleRef = useRef(-Math.PI / 2); // start at top
   const rafRef = useRef(null);
   const isSpinningRef = useRef(false);
   const membersRef = useRef(members);
+  const segmentColorsRef = useRef(segmentColors);
   const spinStateRef = useRef({ startAngle: 0, totalSpin: 0, duration: 0, startTime: 0, winnerIndex: -1 });
 
   // Keep membersRef in sync
@@ -78,9 +98,17 @@ export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, 
     membersRef.current = members;
   }, [members]);
 
+  // Keep segmentColorsRef in sync and redraw on color change
+  useEffect(() => {
+    segmentColorsRef.current = segmentColors;
+    if (canvasRef.current) {
+      drawWheel(canvasRef.current, membersRef.current, angleRef.current, segmentColorsRef.current);
+    }
+  }, [segmentColors]);
+
   const draw = useCallback(() => {
     if (canvasRef.current) {
-      drawWheel(canvasRef.current, membersRef.current, angleRef.current);
+      drawWheel(canvasRef.current, membersRef.current, angleRef.current, segmentColorsRef.current);
     }
   }, []);
 
@@ -113,13 +141,13 @@ export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, 
       const progress = Math.min(elapsed / state.duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       angleRef.current = state.startAngle + state.totalSpin * eased;
-      drawWheel(canvasRef.current, membersRef.current, angleRef.current);
+      drawWheel(canvasRef.current, membersRef.current, angleRef.current, segmentColorsRef.current);
 
       if (progress < 1) {
         rafRef.current = requestAnimationFrame(frame);
       } else {
         angleRef.current = state.startAngle + state.totalSpin;
-        drawWheel(canvasRef.current, membersRef.current, angleRef.current);
+        drawWheel(canvasRef.current, membersRef.current, angleRef.current, segmentColorsRef.current);
         isSpinningRef.current = false;
         setIsSpinning(false);
 
@@ -160,7 +188,7 @@ export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, 
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
     isSpinningRef.current = false;
     setIsSpinning(false);
-    drawWheel(canvasRef.current, membersRef.current, angleRef.current);
+    drawWheel(canvasRef.current, membersRef.current, angleRef.current, segmentColorsRef.current);
 
     const n = membersRef.current.length;
     const arc = (Math.PI * 2) / n;
@@ -205,16 +233,16 @@ export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, 
       {!currentSpeaker && (
         <div className="wheel-character">
           <img
-            src={`${import.meta.env.BASE_URL}assets/images/main.png`}
-            alt="skull"
+            src={centerImage}
+            alt="center"
             className="wheel-character-img"
           />
         </div>
       )}
-      {currentSpeaker && CHARACTER_IMAGES[currentSpeaker.id] && (
+      {currentSpeaker && characterImages[currentSpeaker.id] && (
         <div className={`wheel-character wheel-character--id-${currentSpeaker.id}`}>
           <img
-            src={CHARACTER_IMAGES[currentSpeaker.id]}
+            src={characterImages[currentSpeaker.id]}
             alt={currentSpeaker.name}
             className="wheel-character-img"
           />
