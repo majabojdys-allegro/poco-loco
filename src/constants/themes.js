@@ -12,13 +12,13 @@ const COCO_CHARACTERS = {
 
 const HOGWART_CHARACTERS = {
   ...COCO_CHARACTERS,
-  1: `${BASE}assets/images/characters/luna.png`,          // Maja → Luna
-  2: `${BASE}assets/images/characters/hermiona.png`,      // Gosia → Hermiona
+  1: `${BASE}assets/images/characters/hermiona.png`,      // Maja → Hermiona
+  2: `${BASE}assets/images/characters/voldemort.png`,     // Gosia → Voldemort
   3: `${BASE}assets/images/characters/snape.png`,         // Marcin → Snape
-  4: `${BASE}assets/images/characters/harry.png`,         // Jacek → Harry
+  4: `${BASE}assets/images/characters/luna.png`,          // Jacek → Luna
   5: `${BASE}assets/images/characters/hagrid.png`,        // Paweł → Hagrid
   6: `${BASE}assets/images/characters/dumbledore.png`,    // Łukasz W. → Dumbledore
-  7: `${BASE}assets/images/characters/ron.png`,           // Łukasz T. → Ron
+  7: `${BASE}assets/images/characters/syriusz.png`,       // Łukasz T. → Syriusz
 };
 
 export const THEMES = [
