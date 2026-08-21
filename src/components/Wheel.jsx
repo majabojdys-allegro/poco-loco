@@ -231,7 +231,7 @@ export default function Wheel({ members, onSpinEnd, spinTrigger, setIsSpinning, 
         className="wheel-canvas"
       />
       {!currentSpeaker && (
-        <div className="wheel-character">
+        <div className="wheel-character wheel-character--center">
           <img
             src={centerImage}
             alt="center"

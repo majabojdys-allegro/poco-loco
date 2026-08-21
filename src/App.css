@@ -239,3 +239,103 @@ body {
   background: linear-gradient(135deg, #b8891a 0%, #D3A625 100%);
   box-shadow: 0 8px 32px rgba(211, 166, 37, 0.75);
 }
+
+/* ===================== MOTYW: 1670 ===================== */
+
+.title--1670 {
+  font-family: 'Cinzel Decorative', serif !important;
+  font-size: 3.2rem !important;
+  letter-spacing: 4px !important;
+}
+
+.theme-1670 .l0 { color: #1a0a00; text-shadow: 0 0 12px rgba(197,160,89,0.9), 3px 3px 0 rgba(0,0,0,0.5); }
+.theme-1670 .l1 { color: #1a0a00; text-shadow: 0 0 12px rgba(197,160,89,0.9), 3px 3px 0 rgba(0,0,0,0.5); }
+.theme-1670 .l2 { color: #1a0a00; text-shadow: 0 0 12px rgba(197,160,89,0.9), 3px 3px 0 rgba(0,0,0,0.5); }
+.theme-1670 .l3 { color: #1a0a00; text-shadow: 0 0 12px rgba(197,160,89,0.9), 3px 3px 0 rgba(0,0,0,0.5); }
+.theme-1670 .l4 { color: #1a0a00; text-shadow: 0 0 12px rgba(197,160,89,0.9), 3px 3px 0 rgba(0,0,0,0.5); }
+.theme-1670 .l5 { color: #1a0a00; text-shadow: 0 0 12px rgba(197,160,89,0.9), 3px 3px 0 rgba(0,0,0,0.5); }
+.theme-1670 .l6 { color: #1a0a00; text-shadow: 0 0 12px rgba(197,160,89,0.9), 3px 3px 0 rgba(0,0,0,0.5); }
+.theme-1670 .l7 { color: #1a0a00; text-shadow: 0 0 12px rgba(197,160,89,0.9), 3px 3px 0 rgba(0,0,0,0.5); }
+
+.theme-1670 .title-skull {
+  filter: sepia(0.6) hue-rotate(320deg) brightness(0.8);
+}
+
+.theme-1670 .wheel-canvas {
+  box-shadow:
+    0 0 0 4px rgba(197, 160, 89, 0.35),
+    0 0 40px rgba(0, 0, 0, 0.6),
+    0 0 80px rgba(94, 44, 40, 0.45);
+}
+
+.theme-1670 .spin-btn {
+  background: linear-gradient(135deg, #5E2C28 0%, #8B4513 100%);
+  box-shadow: 0 4px 24px rgba(94, 44, 40, 0.55);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+}
+
+.theme-1670 .spin-btn:hover:not(:disabled) {
+  box-shadow: 0 8px 32px rgba(94, 44, 40, 0.75);
+}
+
+.theme-1670 .boost-btn {
+  background: linear-gradient(135deg, #2F4538 0%, #4a6b52 100%);
+  box-shadow: 0 4px 24px rgba(47, 69, 56, 0.55);
+}
+
+.theme-1670 .boost-btn:hover {
+  background: linear-gradient(135deg, #1e2e24, #2F4538);
+}
+
+.theme-1670 .stop-btn {
+  background: linear-gradient(135deg, #C5A059 0%, #d9b76a 100%);
+  box-shadow: 0 4px 24px rgba(197, 160, 89, 0.55);
+  color: #2a150a;
+}
+
+.theme-1670 .stop-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #b08a4a 0%, #C5A059 100%);
+  box-shadow: 0 8px 32px rgba(197, 160, 89, 0.75);
+}
+
+/* Logo 1670 w środku koła (gdy nikt nie mówi) */
+.theme-1670 .wheel-character--center {
+  width: 200px;
+  height: 85px;
+}
+
+/* Rozmiary postaci z motywu 1670 w środku koła */
+.theme-1670 .wheel-character--id-2 {
+  width: 200px;
+  height: 170px;
+}
+
+.theme-1670 .wheel-character--id-3 {
+  width: 200px;
+  height: 200px;
+}
+
+.theme-1670 .wheel-character--id-4 {
+  width: 187px;
+  height: 217px;
+}
+
+.theme-1670 .wheel-character--id-5 {
+  width: 160px;
+  height: 235px;
+}
+
+.theme-1670 .wheel-character--id-6 {
+  width: 180px;
+  height: 207px;
+}
+
+.theme-1670 .wheel-character--id-7 {
+  width: 162px;
+  height: 195px;
+}
+
+.theme-1670 .wheel-character--id-1 {
+  width: 200px;
+  height: 213px;
+}

@@ -21,6 +21,16 @@ const HOGWART_CHARACTERS = {
   7: `${BASE}assets/images/characters/syriusz.png`,       // Łukasz T. → Syriusz
 };
 
+const CHARACTERS_1670 = {
+  1: `${BASE}assets/images/1670Stanisław.png`,  // Maja → Stanisław
+  2: `${BASE}assets/images/1670Aniela.png`,     // Gosia → Aniela
+  3: `${BASE}assets/images/1670ksiadz.png`,     // Marcin → ksiądz Jakub
+  4: `${BASE}assets/images/1670JanPawel.png`,   // Jacek → Jan Paweł
+  5: `${BASE}assets/images/1670Bogdan.png`,     // Paweł → Bogdan
+  6: `${BASE}assets/images/1670Maciej.png`,     // Łukasz W. → Maciej
+  7: `${BASE}assets/images/1670Andrzej.png`,    // Łukasz T. → Andrzej
+};
+
 export const THEMES = [
   {
     id: 'coco',
@@ -40,7 +50,7 @@ export const THEMES = [
     backgroundImage: `${BASE}assets/images/coco.jpg`,
     backgroundOverlay:
       'linear-gradient(135deg, rgba(15, 12, 41, 0.55) 0%, rgba(48, 43, 99, 0.55) 50%, rgba(36, 36, 62, 0.55) 100%)',
-    audioSrc: `${BASE}assets/sounds/background.mp3`,
+    audioSrc: `${BASE}assets/sounds/COCOtło.mp3`,
     centerImage: `${BASE}assets/images/main.png`,
     characterImages: COCO_CHARACTERS,
     titleSideImage: null,
@@ -65,6 +75,25 @@ export const THEMES = [
     titleSideImage: `${BASE}assets/images/HP-boczki.png`,
     labelEmoji: '⚡',
     titleClassName: 'title--hogwart',
+  },
+  {
+    id: '1670',
+    name: '1670',
+    segmentColors: [
+      '#5E2C28', // barokowe bordo
+      '#C5A059', // złoto
+      '#2F4538', // sarmacka zieleń
+      '#8B4513', // drewniany brąz
+    ],
+    backgroundImage: `${BASE}assets/images/1670tło.jpg`,
+    backgroundOverlay:
+      'linear-gradient(135deg, rgba(20, 12, 8, 0.55) 0%, rgba(40, 25, 15, 0.55) 50%, rgba(25, 15, 10, 0.55) 100%)',
+    audioSrc: `${BASE}assets/sounds/1670Muzyka.mp3`,
+    centerImage: `${BASE}assets/images/1670logo.png`,
+    characterImages: CHARACTERS_1670,
+    titleSideImage: `${BASE}assets/images/1670ribbon.png`,
+    labelEmoji: '⚔️',
+    titleClassName: 'title--1670',
   },
 ];
 
